@@ -50,9 +50,28 @@ return {
 					},
 					keyword_length = 1,
 				},
+				formatting = {
+					fields = { "abbr", "kind" },
+					format = function(_, item)
+						local max_width = 35
+
+						if #item.abbr > max_width then
+							item.abbr = item.abbr:sub(1, max_width - 3) .. "..."
+						end
+
+						return item
+					end,
+				},
 				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
+					completion = cmp.config.window.bordered({
+						side_padding = 1,
+						winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
+					}),
+					documentation = cmp.config.window.bordered({
+						max_width = 60,
+						max_height = 15,
+						winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
+					}),
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),

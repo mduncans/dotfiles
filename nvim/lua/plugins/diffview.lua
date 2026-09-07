@@ -15,7 +15,7 @@ return {
 		},
 		{ "<leader>dm", "<cmd>DiffviewOpen origin/main...HEAD<cr>", desc = "Diff against main" },
 		{
-			"<leader>db",
+			"<leader>dr",
 			function()
 				vim.ui.input({ prompt = "Branch: ", default = "origin/" }, function(branch)
 					if branch and branch ~= "" then
